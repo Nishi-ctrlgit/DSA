@@ -88,7 +88,8 @@ class Solution {
         Collections.sort(nums);
 
   
-
+// TC : O(n log n)
+// SC : O(log n)
         int i = 0;
 
         int j = nums.size() - 1;
