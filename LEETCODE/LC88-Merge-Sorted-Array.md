@@ -69,26 +69,65 @@ Three pointers — `p1` at end of valid `nums1` (`m-1`), `p2` at end of `nums2` 
 ### Optimal — Three Pointers, Fill from Back, O(m+n)
 ```java
 class Solution {
-    public void merge(int[] nums1, int m, int[] nums2, int n) {
 
-        int p1 = m - 1;          // pointer at last valid element of nums1
-        int p2 = n - 1;          // pointer at last element of nums2
-        int p  = m + n - 1;      // pointer at last index of nums1 (write position)
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
 
-        // merge from the back — never overwrites unread data
-        while (p2 >= 0) {
-            if (p1 >= 0 && nums1[p1] > nums2[p2]) {
-                nums1[p] = nums1[p1];
-                p1--;
-            } else {
-                nums1[p] = nums2[p2];
-                p2--;
-            }
-            p--;
-        }
-        // if p1 still has elements left, they're already in correct
-        // position (front of nums1) — nothing more to do
-    }
+        int i = m - 1,
+
+            j = n - 1,
+
+            k = m + n - 1;
+
+            // TC : o(m+n)
+
+            // SC : O(1)
+
+            /* nums1 : 1 2 3 0 0 0
+
+            /              i
+
+                                  k
+
+               nums2 : 2 5 6
+
+                           j
+
+            */
+
+  
+
+            while(i >= 0 && j >= 0){
+
+                if(nums1[i] > nums2[j]){
+
+                    nums1[k] = nums1[i];
+
+                    i = i - 1;
+
+                    } else {
+
+                        nums1[k] = nums2[j];
+
+                        j = j - 1;
+
+                    }
+
+                    k =  k - 1;
+
+            }
+
+            while(j >= 0){
+
+                nums1[k] = nums2[j];
+
+                j = j - 1;
+
+                k = k - 1;
+
+            }
+
+    }
+
 }
 ```
 
